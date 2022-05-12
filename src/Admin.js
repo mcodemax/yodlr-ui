@@ -16,7 +16,7 @@ function Admin() {
         setLoading(false);
       } catch (error) {
         console.log(error);
-        // setError(error);
+        setError(error);
       }
     };
 
@@ -34,8 +34,8 @@ function Admin() {
   return (
     <div className='Admin'>
       {usersInfo ? usersInfo.map((user) => {
-          return <User user={user}/>
-      }) : <p>Error</p>}
+          return <User user={user} key={`${user.name}-${user.id}`}/>
+      }) : <p>{error}</p>}
     </div>
   );
 }
