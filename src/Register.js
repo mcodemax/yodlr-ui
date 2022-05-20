@@ -15,6 +15,7 @@ function Register() {
     e.preventDefault();
     try {
       axios.post('http://localhost:3001/users', formData);
+      setFormData(defaultData);
       setError(null);
     } catch (error) {
       setError(error);

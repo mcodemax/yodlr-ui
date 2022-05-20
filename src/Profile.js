@@ -16,23 +16,24 @@ function Profile() {
         setUserInfo(res.data);
         setError(null);
       } catch (error) {
-        setError(error);
+        setLoading(false);
+        setError(error.message);
       }
     };
 
     getUserInfo(id);
-  }, [loading, setLoading]);
+  }, []);
 
   if (loading) return <div className='Profile'>Loading</div>;
 
   return (
     <div className='Profile'>
       {error ? <h1 className='error'>{error}</h1> : null}
-      <p>{userInfo.id}</p>
+      {userInfo ? <><p>{userInfo.id}</p>
       <p>{userInfo.email}</p>
       <p>{userInfo.firstName}</p>
       <p>{userInfo.lastName}</p>
-      <p>{userInfo.state}</p>
+      <p>{userInfo.state}</p></> : null}
     </div>
   );
 }
