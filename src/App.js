@@ -5,6 +5,7 @@ import Admin from './Admin';
 import Home from './Home';
 import Register from './Register';
 import Profile from './Profile';
+import UpdateUser from './UpdateUser';
 
 function App() {
   return (
@@ -14,10 +15,12 @@ function App() {
           <Link to='/'>Home</Link>
           <Link to='/register'>Register</Link>
           <Link to='/Admin'>Admin</Link>
+          <Link to='/update'>Update Users</Link>
         </nav>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/users/:id' element={<Profile />}></Route>
+          <Route path='/update' element={<UpdateUser />}></Route>
           <Route path='/register' element={<Register />}></Route>
           <Route path='/Admin' element={<Admin />}></Route>
         </Routes>
