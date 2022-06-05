@@ -12,15 +12,37 @@ function UpdateUser() {
 
   const [loaded, setLoaded] = useState(false);
   const [formData, setFormData] = useState(defaultData);
+  const [error, setError] = useState(null);
   const handleChange = (event) => {
-      setFormData(data => ({
-          ...data,
-        [event.target.name]: event.target.value
-      }))
+    setFormData((data) => ({
+      ...data,
+      [event.target.name]: event.target.value,
+    }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let sendData = {};
+    let id;
+    try {
+      for (const field in formData) {
+          console.log(field)
+        if (field === 'id') {
+          id = +formData[field];
+          console.log(id, formData);
+        }
+        if (sendData[field] !== null && sendData[field] !== '')
+          sendData[field] = formData[field];
+      }
+      console.log(sendData, id);
 
+      axios.put(`http://localhost:3001/users/${id}`, sendData);
+      setFormData(defaultData);
+      setError(null);
+    } catch (error) {
+      setError(error);
+      setFormData(defaultData);
+    }
   };
 
   return (
